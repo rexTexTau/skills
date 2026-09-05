@@ -8,6 +8,7 @@
 - Keep stdout limited to the requested transcript format; diagnostics belong on stderr because attachment handlers insert stdout into user turns.
 - Never print `MISTRAL_API_KEY` or request headers in diagnostics.
 - Validate arguments and credentials before invoking the Mistral API.
+- Preserve positional invocation for `transcribe_mistral`: `transcribe.sh {file} {lang} {model} {diarize}`.
 - Preserve the positional interface documented in the Skill for existing `transcribe_mistral` callers.
 
 ### Discovered Constraints

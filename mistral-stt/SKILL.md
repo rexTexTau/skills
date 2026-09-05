@@ -32,4 +32,7 @@ MISTRAL_API_KEY=xxx ./scripts/transcribe.sh --file audio.ogg --lang ru --model v
 
 ## Notes
 
+- Default model: `voxtral-mini-latest`. Diarization works for this model only, so if diarization is on, model will always be `voxtral-mini-latest`.
+- Parses Mistral JSON response and prints only the `text` field.
+- Preserves positional invocation used by `transcribe_mistral`: `transcribe.sh {file} {lang} {model}`.
 - Diarization preserves Mistral's `speaker_id` values without guessing or merging speakers.
