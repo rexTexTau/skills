@@ -18,10 +18,6 @@ Direct Node.js client for Microsoft Edge's online TTS service. The canonical cli
 ./scripts/say.sh --list-voices
 ```
 
-## CLI Contract
-
-`say.sh` delegates to `say.mjs`, which supports both positional and flag-style invocation. Positional form is compact for humans and simple wrappers; flag form is explicit and self-documenting for operators.
-
 ## CLI Options
 
 - `--text`, `--file` — text source; `-` means stdin for files.
@@ -35,7 +31,7 @@ Direct Node.js client for Microsoft Edge's online TTS service. The canonical cli
 
 ## Playback
 
-Playback is optional and only applies when no media output path is provided. `say.mjs` auto-detects a local MP3 player and removes the temp file after playback when the player is blocking.
+Playback runs in background only when no media output path is provided. The client auto-detects a local MP3 player and removes the temp file after playback when the player is blocking.
 
 Default candidates:
 
@@ -54,8 +50,6 @@ If no player exists, generation is still available through `--write-media`; the 
 
 ## Notes
 
-- Non-blocking playback runs the selected player in background.
-- Accepts text from argv or stdin.
 - Built-in language shortcuts: en, ru, de, fr, es, it, zh, ja.
 - Default rate: +30%.
 - Rate/volume accept Edge percent strings and numeric multipliers: `1` = `+100%`, `0.8` = `+80%`, `-0.5` = `-50%`.

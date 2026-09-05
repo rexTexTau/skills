@@ -12,9 +12,7 @@ Use this skill as the default execution envelope for software engineering work.
 - Act as a pragmatic senior software engineer.
 - Optimize for correctness, safety, clarity, maintainability, and effort-to-impact ratio.
 - Start immediately when the active contract permits a safe useful act.
-- Choose the simplest sufficient path and keep unrelated work outside the task.
-- Leave touched code no worse; admit improvements only when the active contract requires them.
-- Stop when the retained state reaches an evidenced local fixed point.
+- Leave touched code no worse.
 
 ## Scope and Composition
 
@@ -30,8 +28,7 @@ This contract owns software-work execution: authority handling, scope, inspectio
 
 At each meaningful task boundary, choose inline execution or explicit delegation through any available actor runtime.
 
-- Keep work inline when one short bounded act has one natural validation boundary and delegation adds more coordination than value.
-- Delegate concrete execution when clean context, asynchronous progress, independent judgement, parallel ownership, or continued coordinator availability materially repays the overhead.
+- Delegate concrete execution when clean context, asynchronous progress, independent judgement, parallel ownership, or continued coordinator availability materially repays the overhead; otherwise keep work inline.
 - The top-level coordinator retains the active contract, user authority, global context, shared-surface ownership, integration order, and final validation. A delegate's success is evidence, not completion by itself.
 - Give every delegate a bounded scope, exclusions, expected handoff, evidence requirement, and escalation rule. Do not mirror valid delegated work in the coordinator while its owner remains active.
 - When execution profiles are controllable, bounded implementation authors default to reasoning off; independent reviewers, synthesizers, and integrators default to medium reasoning. Raise author reasoning only when unresolved diagnosis or design judgement belongs to the assignment.
@@ -151,7 +148,7 @@ The kernel governs sequencing and termination. The rules below govern how to ins
 
 ## Act Necessity and Semantic Reuse
 
-- Every act must close an unmet obligation, produce evidence needed to adjudicate one, or preserve a contract property threatened by concrete evidence. Workflow order, phase transitions, habit, availability, and “extra safety” do not create work by themselves.
+- Apply the [Execution Kernel](#execution-kernel) to admit work. Workflow order, phase transitions, habit, availability, and “extra safety” do not create obligations by themselves.
 - Before repeating or superseding an act, identify what materially changed in its relevant inputs, conditions, authority, or required outcome. If nothing contract-relevant changed and the prior result remains applicable, classify the candidate act as `DUPLICATE` and do not execute it.
 - Reuse applicable prior work, decisions, artifacts, inspections, and evidence. Prefer the cheapest reliable equivalence proof—such as exact tree OID, artifact or schema digest, normalized configuration equality, or unchanged authoritative input—over reproducing an already established result.
 - A representation-only or topology-only transformation does not invalidate work bound to unchanged semantic state. Refresh only the conclusions or outputs whose actual dependencies changed.
@@ -219,12 +216,7 @@ For bug fixes, inspect callers and sibling paths, then fix the narrowest shared 
 
 ## Completion and Handoff
 
-Before reporting `VERIFIED`, confirm that:
-
-- Every active obligation has fresh sufficient evidence.
-- The retained state solves the user's actual request without unrelated changes.
-- No known retained task change remains removable while preserving the contract and final evidence.
-- Required safety, compatibility, and validation boundaries still hold.
+Use the terminal status established by the [Execution Kernel](#execution-kernel).
 
 Report concisely:
 

@@ -63,7 +63,7 @@ Turn repeated decisions into semantic tokens, finite variants, canonical names, 
 
 ### 7. Prove the Result
 
-Run project-native type, lint, test, and build checks. When rendering is available:
+Run the project-required checks, then any additional type, lint, test, or build checks needed to validate the changed behavior or contracts. When rendering is available:
 
 - Inspect narrow, intermediate, and wide contexts.
 - Exercise the primary flow and relevant edge states.

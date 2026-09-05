@@ -1,23 +1,17 @@
 # AGENTS.md (edge-tts)
 
-## Knowledge & Conventions
+[SKILL.md](./SKILL.md) owns the client architecture, invocation, output modes, and platform playback behavior.
 
 ### Operating Principles
 
-- Keep `scripts/say.mjs` canonical: direct Node.js client only, no Python package and no CLI fallback.
-- Keep `scripts/say.sh` as a thin Bash wrapper that only delegates to `scripts/say.mjs`.
-- Keep playback non-blocking: synthesis may block, playback must run in background.
+- Preserve the Skill's client architecture; keep the Bash entrypoint a delegation-only wrapper.
 - In playback mode, print only the spoken text to stdout; send diagnostics to stderr.
-- Preserve stdin support for text so callers can pipe generated responses.
-- Preserve positional invocation for `say_edge`: `say.sh {text} {lang} {rate}`.
+- Preserve the Skill's stdin and positional interfaces for piped responses and existing `say_edge` callers.
 
 ### Playback Policy
 
-- Do not hard-require FFmpeg/`ffplay`; it is just one possible MP3 player.
-- Auto-detect blocking players in this order: `ffplay`, `mpv`, `vlc`, `cvlc`, `mpg123`, `afplay`.
-- On Windows, if no explicit player is installed, use the system-registered MP3 app via PowerShell `Start-Process`.
-- If no local player exists, generate MP3 with `--write-media` and let the agent choose an environment-specific playback command.
-- `ffplay` is required only if it is the selected playback command; saving MP3, subtitles, metadata, and voice listing must work without it.
+- Auto-detect blocking players in this order: `ffplay`, `mpv`, `vlc`, `cvlc`, `mpg123`, `afplay`, before the Skill's Windows fallback.
+- Keep media, subtitle, metadata, and voice-list operations independent of player availability.
 
 ### Discovered Constraints
 

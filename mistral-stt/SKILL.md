@@ -14,18 +14,14 @@ MISTRAL_API_KEY=xxx ./scripts/transcribe.sh audio.ogg [language] [model] [diariz
 MISTRAL_API_KEY=xxx ./scripts/transcribe.sh --file audio.ogg --lang ru --model voxtral-mini-latest --diarize true
 ```
 
-- `language` — optional; omitted means provider auto-detection.
-- `model` — optional; default: `voxtral-mini-latest`.
-- `diarize` — optional boolean; default: `false`.
 - Outputs plain transcription text, or timestamped speaker segments when diarization is enabled.
 - Fails fast when the file or `MISTRAL_API_KEY` is missing.
-- Supports both positional and flag-style invocation.
 
 ## CLI Options
 
 - `--file`, `-f` — audio file path.
-- `--lang`, `--language`, `-l` — optional language code.
-- `--model`, `-m` — Mistral transcription model.
+- `--lang`, `--language`, `-l` — optional language code; omitted means provider auto-detection.
+- `--model`, `-m` — Mistral transcription model; default: `voxtral-mini-latest`.
 - `--diarize`, `-d` — `true` to label speaker segments; default: `false`.
 - `--help`, `-h` — usage.
 
@@ -36,7 +32,4 @@ MISTRAL_API_KEY=xxx ./scripts/transcribe.sh --file audio.ogg --lang ru --model v
 
 ## Notes
 
-- Default model: `voxtral-mini-latest`.
 - Diarization preserves Mistral's `speaker_id` values without guessing or merging speakers.
-- Parses Mistral JSON and keeps stdout limited to the requested transcript format.
-- Preserves positional invocation used by `transcribe_mistral`: `transcribe.sh {file} {lang} {model} {diarize}`.

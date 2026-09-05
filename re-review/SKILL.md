@@ -78,30 +78,11 @@ For documents, inspect:
 - Whether subjective work has references, anti-references, and preview gates.
 - Whether factual claims trace to evidence and disclose uncertainty.
 
-For architecture, inspect:
+For mode-specific inspection, use the owning section:
 
-- System map: entrypoints, runtimes, data stores, queues, external services, auth boundaries, deployment, and ownership.
-- Claims versus code: verify README, docs, issue claims, and audit claims against implementation.
-- Critical flows: trace the top user, money, auth, data, and background-job flows end-to-end.
-- Failure modes: what is persisted, what is lost, how retry works, and how manual recovery works.
-- Production readiness: observability, alerts, logs, backups, rollback, admin path, CI, and environment separation.
-- Scaling bottlenecks: connection pools, queues, synchronous external calls, hot queries, CPU work, and single points of failure.
-- Team fit: a correct recommendation that the team cannot operate is not a good recommendation.
-
-For verification, inspect:
-
-- Each original finding or requested change against the revised code, document, or artifact.
-- Whether the claimed fix exists, whether it addresses the failure scenario, and whether it adds regressions.
-- Residual issues, partially addressed items, and new issues introduced by the revision.
-- Evidence for every status: verified, partially verified, not verified, obsolete, or not checkable.
-
-For fact-checking or evidence review, inspect:
-
-- The exact claim, its scope, and its implied confidence.
-- The cited or available evidence, including primary source preference when available.
-- Source quality, recency, independence, conflicts of interest, and whether evidence actually supports the claim.
-- Contradictory evidence and plausible alternative explanations.
-- Whether missing evidence makes the claim unsupported rather than merely uncertain.
+- Architecture → [Architecture 90/10 Lens](#architecture-9010-lens).
+- Verification → [Verification Re-Review Lens](#verification-re-review-lens).
+- Fact-checking → [Evidence and Fact-Check Lens](#evidence-and-fact-check-lens).
 
 **Exit**: Candidate findings exist with supporting evidence.
 
@@ -109,11 +90,11 @@ For fact-checking or evidence review, inspect:
 
 Use this when Architecture mode is active. Do enough to make decisions without turning the review into a full consulting engagement.
 
-1. Map the current system from code, configs, and docs.
+1. Map entrypoints, runtimes, stores, queues, external services, auth boundaries, deployment, and ownership from code, configs, and docs.
 2. Verify claims against implementation. Docs are leads, not truth.
 3. Trace the top three critical flows end-to-end.
 4. For each critical flow, identify persisted state, lost state, retry path, and manual recovery.
-5. Find bottlenecks and single points of failure.
+5. Find bottlenecks and single points of failure: connection pools, queues, synchronous external calls, hot queries, and CPU work.
 6. Check minimum production readiness: errors, alerts, logs, backups, rollback, admin path, CI, and environment separation.
 7. Convert major choices into ADR candidates with 2-4 options and one recommended minimum.
 8. Sequence work into the first safe slice, next slices, and external gates.
@@ -124,10 +105,10 @@ Use this when the review depends on external sources, citations, claims, logs, m
 
 Rules:
 
-1. Every important factual claim needs traceable evidence or an explicit uncertainty label.
+1. Identify each material claim's exact scope and implied confidence; require traceable evidence or an explicit uncertainty label.
 2. Primary sources beat summaries; independent corroboration beats repeated copies of the same claim.
-3. Source quality matters: peer-reviewed or official records, reputable primary data, reproducible logs, then gray literature or commentary.
-4. Contradictions must be disclosed, not averaged away.
+3. Assess source quality, recency, and conflicts of interest: peer-reviewed or official records, reputable primary data, reproducible logs, then gray literature or commentary.
+4. Disclose contradictions and plausible alternative explanations; do not average them away.
 5. A source can prove existence without proving interpretation; check what the evidence actually supports.
 6. Gray zone is not verified. If required evidence is missing, say `Not verified` or `Not checkable` and name the missing evidence.
 
@@ -163,7 +144,7 @@ Allowed statuses:
 - **Obsolete** — The original item no longer applies because the surrounding design changed.
 - **Not checkable** — Required evidence is unavailable; explain exactly what is missing.
 
-Do not rubber-stamp. A re-review must independently inspect the revised artifact, not only the response or summary.
+Independently inspect the revised artifact, not only the response or summary; check both the original failure scenario and regressions introduced by the revision.
 
 ## Multi-Lens Review Pattern
 
@@ -250,12 +231,11 @@ Challenge every finding:
 3. What evidence proves it?
 4. What would disprove it?
 5. Is severity honest?
+6. Can the intended team operate the suggested solution within its constraints?
 
 Drop findings that cannot survive this challenge.
 Mark uncertainty explicitly instead of pretending confidence.
 For high-stakes reviews, perform an independent second pass or subagent pass when available, then reconcile disagreements against evidence.
-
-For multi-lens reviews, keep lenses independent until synthesis. Do not let one lens reference another lens's conclusion during inspection. The synthesizer may only use claims that trace to lens output, checked files, commands, logs, or quoted document evidence.
 
 **Exit**: Findings are verified, deduplicated, and severity-ranked.
 
@@ -336,24 +316,3 @@ Weak finding:
 
 Nits belong only in Observations and only when they prevent confusion.
 Do not mix style preferences with release blockers.
-
-## Anti-Traps
-
-- Do not trust docs over code.
-- Do not trust passing tests without checking assertions.
-- Do not recommend best practices that the team cannot operate.
-- Do not skim high-risk paths.
-- Do not hide uncertainty.
-
-## Validation Checklist
-
-Before final answer, verify:
-
-- Read implementation and tests when code is in scope.
-- Checked call sites and integration boundaries when relevant.
-- Checked project conventions before judging style.
-- Checked security and data handling for sensitive paths.
-- Checked test integrity, not just coverage presence.
-- Verified every Critical finding has evidence and a failure scenario.
-- Checked architecture mode against system map, critical flows, failure modes, ADRs, ops readiness, and execution order.
-- Wrote artifact only when explicitly requested or offered and accepted.

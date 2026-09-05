@@ -95,7 +95,6 @@ Read systems through primitives, constraints, state, interfaces, incentives, and
 
 Use the smallest set that fits the task.
 
-- `Hypothesis fork`: Preserve materially distinct explanations until evidence justifies convergence; do not select a kernel merely because it compresses better.
 - `Kernel extraction`: Name the governing mechanism after resolving or exposing material competing hypotheses.
 - `Primitive split`: Separate irreducible actors, media, incentives, state, state transitions, control planes, interfaces, and boundaries.
 - `Layer split`: Separate mechanism, policy, narrative, interface, and operations.
@@ -107,8 +106,6 @@ Use the smallest set that fits the task.
 - `Category design`: Name the market or culture bucket a concept creates or refuses.
 - `Doctrine forge`: Convert repeated judgments into portable operating rules.
 - `Counter-meme`: Build the strongest opposing frame and locate its fitness source.
-- `Adversarial frame`: Test the favored model against an orthogonal causal account when the decision would change under it.
-- `Blocker preservation`: Keep the exact reason a path failed and reopen it only when a new mechanism addresses that blocker.
 - `Constitution test`: Distinguish policy, parameter, invariant, and sacred boundary.
 - `Compression pass`: After convergence, collapse the structure into a portable phrase, formula, or name.
 

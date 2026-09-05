@@ -39,16 +39,9 @@ Implementation may begin once design uncertainty for the current slice is resolv
 
 ## Operating Principles
 
-- Ask only what changes the design.
-- Prefer one question at a time.
-- Prefer multiple-choice questions when they reduce friction.
-- Lead with the recommended option after enough context is known.
-- Keep alternatives concrete and trade-off based.
-- Use the smallest design artifact that preserves shared understanding.
 - Separate portable mechanism from product-specific content.
 - Treat durable context, documentation, and open-work state as part of design truth.
 - Avoid speculative architecture. Add complexity only when a discovered constraint earns it.
-- Preserve local vocabulary instead of importing new ontology unnecessarily.
 - If the user has a vague interest rather than a clear question, guide first instead of producing an unwanted report.
 - Treat claims, assumptions, and evidence needs as design material; do not invent certainty before investigation.
 
@@ -194,7 +187,7 @@ If the request spans independent subsystems, decompose before designing details.
 
 ### 3. Clarify
 
-Ask one useful question at a time until the main uncertainty is resolved.
+Ask one question at a time, only when its answer can change the design. Prefer multiple-choice questions when they reduce friction. Stop when the main uncertainty is resolved.
 
 Prefer questions about:
 
@@ -276,7 +269,7 @@ Before handing off, check:
 - No `TBD` / vague placeholders unless intentionally marked open
 - No contradiction with existing project docs
 - Scope is implementable as one slice, or explicitly decomposed
-- Terminology matches local vocabulary
+- Terminology matches local vocabulary; new ontology resolves a real ambiguity
 - Optional vs mandatory modules are labeled honestly
 - Data/state ownership is clear
 - Validation path is named
