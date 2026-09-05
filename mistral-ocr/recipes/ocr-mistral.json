@@ -1,0 +1,18 @@
+{
+  "name": "ocr-mistral",
+  "description": "Recognize text in an image using Pixtral on Mistral AI.",
+  "args": [
+    "file:path",
+    "lang:string=ru",
+    "model:string=pixtral-12b-latest"
+  ],
+  "flags": [
+    "meta:bool",
+    "format:string=txt"
+  ],
+  "defaults": {
+    "skill_dir": "~/.pi/agent/skills/mistral-ocr"
+  },
+  "template": "{skill_dir}/scripts/ocr.sh {file} {lang} {model} {--meta} {--format}"
+}
+
